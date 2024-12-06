@@ -1,4 +1,5 @@
 local _math = {};
+local pi = 3.1415926535897931;
 
 _math.to_orientation = function(origin_position: Vector3, end_position: Vector3): Vector3
 	local direction = (end_position - origin_position).Unit;
@@ -6,6 +7,19 @@ _math.to_orientation = function(origin_position: Vector3, end_position: Vector3)
 	local yaw = math.atan2(-direction.X, -direction.Z);
 
 	return Vector3.new(math.deg(pitch), math.deg(yaw), 0); -- pitch, yaw
+end
+
+_math.calculate_vertices = function(offset, root)
+	local vertices = {};
+	root = root or 4;
+	
+	for t = 0, pi, (pi / root) do
+		for p = 0, (2 * pi), root do
+			table.insert(vertices, Vector3.new(math.sin(t) * math.cos(p) * offset.X, (math.cos(t) * offset.Y), math.sin(t) * math.sin(p) * offset.Z));
+		end
+	end
+	
+	return vertices;
 end
 
 return _math;
