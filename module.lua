@@ -11,7 +11,7 @@ end
 
 _math.calculate_vertices = function(offset: Vector3, root: number): any
 	local vertices = {};
-	root = root or 4;
+	root = (root or 4);
 	
 	for t = 0, pi, (pi / root) do
 		for p = 0, (2 * pi), root do
