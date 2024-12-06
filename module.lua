@@ -11,14 +11,16 @@ end
 
 _math.calculate_vertices = function(offset: Vector3, root: number): any
 	local vertices = {};
-	root = (root or 4);
-	
+	if (not root) then
+		root = 4;
+	end
+
 	for t = 0, pi, (pi / root) do
 		for p = 0, (2 * pi), root do
 			table.insert(vertices, Vector3.new(math.sin(t) * math.cos(p) * offset.X, (math.cos(t) * offset.Y), math.sin(t) * math.sin(p) * offset.Z));
 		end
 	end
-	
+
 	return vertices;
 end
 
