@@ -9,7 +9,7 @@ _math.to_orientation = function(origin_position: Vector3, end_position: Vector3)
 	return Vector3.new(math.deg(pitch), math.deg(yaw), 0); -- pitch, yaw
 end
 
-_math.calculate_vertices = function(offset, root)
+_math.calculate_vertices = function(offset: Vector3, root: number): any
 	local vertices = {};
 	root = root or 4;
 	
