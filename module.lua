@@ -24,4 +24,16 @@ _math.calculate_vertices = function(offset: Vector3, root: number): any
 	return vertices;
 end
 
+_math.line_rotation = function(from, to, thickness, gui_service) -- we only pass guiservice here cuz some games may detect referencing it, so cloneref if you need
+	local gui_inset = gui_service:GetGuiInset();
+
+	local start_pos = Vector2.new(from.X - gui_inset.X,from.Y - gui_inset.Y);
+	local end_pos = Vector2.new(to.X - gui_inset.X, to.Y - gui_inset.Y);
+
+	local direction = end_pos - start_pos;
+	local center = (start_pos + end_pos) * 0.5; -- make sure .5 is your anchorpoint on x axis (both x and y work fine)
+	
+	return UDim2.fromOffset(center.X, center.Y), math.deg(math.atan2(direction.Y, direction.X)), UDim2.fromOffset(direction.Magnitude, thickness);
+end
+
 return _math;
